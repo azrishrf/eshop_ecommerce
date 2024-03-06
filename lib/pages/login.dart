@@ -64,7 +64,7 @@ class _LoginState extends State<Login> {
                         icon: Icons.key,
                         obscureText: true,
                       ),
-                      SizedBox(height: 40),
+                      const SizedBox(height: 40),
                       TextButton(
                         style: const ButtonStyle(
                           backgroundColor:

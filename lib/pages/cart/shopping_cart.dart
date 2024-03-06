@@ -1,4 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:eshop_ecommerce/pages/cart/address.dart';
 import 'package:eshop_ecommerce/pages/widgets/custom_button.dart';
 import 'package:eshop_ecommerce/palette.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +31,10 @@ class _ShoppingCartState extends State<ShoppingCart> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Shopping Cart",
-            style: Theme.of(context).textTheme.displayLarge),
+            style: Theme.of(context)
+                .textTheme
+                .displayLarge!
+                .copyWith(fontSize: 20)),
         centerTitle: true,
         titleSpacing: 30,
         backgroundColor: Palette.primary,
@@ -142,50 +145,56 @@ class _ShoppingCartState extends State<ShoppingCart> {
               const SizedBox(
                 height: 20,
               ),
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(20),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, Address.routeName);
+                },
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(20),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.2),
+                        spreadRadius: 2,
+                        blurRadius: 13,
+                        offset:
+                            const Offset(0, 0), // changes position of shadow
+                      ),
+                    ],
                   ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.2),
-                      spreadRadius: 2,
-                      blurRadius: 13,
-                      offset: const Offset(0, 0), // changes position of shadow
-                    ),
-                  ],
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Icon(Icons.place),
-                    const SizedBox(width: 10),
-                    Flexible(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Delivery Address",
-                            style: Theme.of(context).textTheme.bodyMedium,
-                          ),
-                          Text(
-                            "Street name, City Name, 40303 Selangor Darul Ehsan",
-                            style: Theme.of(context).textTheme.bodySmall,
-                          ),
-                        ],
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Icon(Icons.place),
+                      const SizedBox(width: 10),
+                      Flexible(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Delivery Address",
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                            Text(
+                              "Street name, City Name, 40303 Selangor Darul Ehsan",
+                              style: Theme.of(context).textTheme.bodySmall,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    const Column(children: [
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Icon(Icons.navigate_next)
-                    ])
-                  ],
+                      const Column(children: [
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Icon(Icons.navigate_next)
+                      ])
+                    ],
+                  ),
                 ),
               ),
             ]),

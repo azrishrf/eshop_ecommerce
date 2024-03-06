@@ -18,11 +18,6 @@ class AppTheme {
           ),
           displayMedium: GoogleFonts.poppins(
               fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
-          // displaySmall: base.textTheme.displaySmall?.copyWith(
-          //   fontSize: Dimens.size20,
-          //   height: Dimens.displaySmallLineHeight,
-          //   fontWeight: FontWeight.w500,
-          // ),
           bodyLarge: GoogleFonts.poppins(
             fontSize: 16,
             fontWeight: FontWeight.bold,
@@ -31,13 +26,11 @@ class AppTheme {
           ),
           bodyMedium: GoogleFonts.poppins(
             fontSize: 14,
-            fontWeight: FontWeight.w400,
             height: 1.5,
             color: Colors.black,
           ),
           bodySmall: GoogleFonts.poppins(
             fontSize: 12,
-            fontWeight: FontWeight.w400,
             height: 1.5,
             color: Colors.black,
           ),

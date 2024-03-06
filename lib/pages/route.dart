@@ -1,10 +1,13 @@
+import 'package:eshop_ecommerce/pages/cart/add_address.dart';
+import 'package:eshop_ecommerce/pages/cart/address.dart';
 import 'package:eshop_ecommerce/pages/home/product_detail.dart';
 import 'package:eshop_ecommerce/pages/init_screen.dart';
 import 'package:eshop_ecommerce/pages/cart/shopping_cart.dart';
+import 'package:eshop_ecommerce/pages/orders/order_details.dart';
 import 'package:flutter/material.dart';
 import 'package:eshop_ecommerce/pages/home/home.dart';
 import 'package:eshop_ecommerce/pages/login.dart';
-import 'package:eshop_ecommerce/pages/orders.dart';
+import 'package:eshop_ecommerce/pages/orders/orders.dart';
 import 'package:eshop_ecommerce/pages/profile.dart';
 
 final Map<String, WidgetBuilder> routes = {
@@ -13,6 +16,9 @@ final Map<String, WidgetBuilder> routes = {
   Home.routeName: (context) => const Home(),
   ProductDetail.routeName: (context) => const ProductDetail(),
   Orders.routeName: (context) => const Orders(),
+  OrderDetails.routeName: (context) => const OrderDetails(),
   Profile.routeName: (context) => const Profile(),
   ShoppingCart.routeName: (context) => const ShoppingCart(),
+  Address.routeName: (context) => const Address(),
+  AddAddress.routeName: (context) => const AddAddress(),
 };

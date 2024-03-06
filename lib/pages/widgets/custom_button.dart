@@ -4,11 +4,15 @@ import 'package:flutter/material.dart';
 class CustomButton extends StatelessWidget {
   final String labelText;
   final void Function()? onPressed;
+  final bool showIcon;
+  final IconData icon;
 
   const CustomButton({
     super.key,
     required this.labelText,
     required this.onPressed,
+    this.showIcon = false,
+    this.icon = Icons.add,
   });
 
   @override
@@ -23,11 +27,20 @@ class CustomButton extends StatelessWidget {
         )),
       ),
       onPressed: onPressed,
-      child: Text(labelText,
-          style: Theme.of(context)
-              .textTheme
-              .displayMedium!
-              .copyWith(color: Palette.white)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          if (showIcon) ...[
+            Icon(icon, color: Palette.white, size: 20,),
+            SizedBox(width: 8.0), // Add spacing between icon and text
+          ],
+          Text(labelText,
+              style: Theme.of(context)
+                  .textTheme
+                  .displayMedium!
+                  .copyWith(color: Palette.white)),
+        ],
+      ),
     );
   }
 }

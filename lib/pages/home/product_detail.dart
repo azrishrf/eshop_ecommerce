@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:eshop_ecommerce/pages/cart/shopping_cart.dart';
 import 'package:eshop_ecommerce/pages/home/modal_product.dart';
 import 'package:eshop_ecommerce/pages/widgets/custom_button.dart';
 import 'package:eshop_ecommerce/palette.dart';
@@ -25,14 +26,19 @@ class _ProductDetailState extends State<ProductDetail> {
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 20.0),
-            child: Container(
-              padding: const EdgeInsets.all(9.0),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Palette.white),
-              child: const Icon(
-                Icons.shopping_cart_outlined,
-                color: Palette.greyDark,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, ShoppingCart.routeName);
+              },
+              child: Container(
+                padding: const EdgeInsets.all(9.0),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Palette.white),
+                child: const Icon(
+                  Icons.shopping_cart_outlined,
+                  color: Palette.greyDark,
+                ),
               ),
             ),
           ),
