@@ -1,4 +1,5 @@
 import 'package:eshop_ecommerce/pages/login.dart';
+import 'package:eshop_ecommerce/pages/route.dart';
 import 'package:eshop_ecommerce/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,9 @@ class MyApp extends StatelessWidget {
       //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       //   useMaterial3: true,
       // ),
-      home: const Login(),
+      // home: const Login(),
+      initialRoute: Login.routeName,
+      routes: routes,
     );
   }
 }

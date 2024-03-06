@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 class TextFieldLogin extends StatelessWidget {
   final String labelText;
   final IconData icon;
+  final bool obscureText;
 
   const TextFieldLogin({
     super.key,
     required this.labelText,
     required this.icon,
+    this.obscureText = false,
   });
 
   @override
@@ -17,10 +19,14 @@ class TextFieldLogin extends StatelessWidget {
       children: [
         Align(
             alignment: Alignment.centerLeft,
-            child:
-                Text(labelText, style: Theme.of(context).textTheme.bodyMedium)),
+            child: Text(labelText,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(color: Palette.white))),
         const SizedBox(height: 5),
         TextField(
+          obscureText: obscureText,
           decoration: InputDecoration(
             filled: true,
             fillColor: Palette.blue,

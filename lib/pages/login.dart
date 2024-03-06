@@ -1,11 +1,20 @@
+import 'package:eshop_ecommerce/pages/home/home.dart';
+import 'package:eshop_ecommerce/pages/init_screen.dart';
 import 'package:eshop_ecommerce/pages/widgets/text_field_login.dart';
 import 'package:eshop_ecommerce/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({super.key});
 
+  static String routeName = "/login";
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +27,7 @@ class Login extends StatelessWidget {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            Color(0xFF1C2B3E), Color(0xFF0B111A) // Light blue at the bottom
+            Color(0xFF2D4C74), Color(0xFF0B111A) // Light blue at the bottom
           ],
         )),
         child: Form(
@@ -37,7 +46,10 @@ class Login extends StatelessWidget {
                           style: Theme.of(context).textTheme.displayLarge),
                       const SizedBox(height: 20),
                       Text("Welcome to Todak eShop. Let’s shop!",
-                          style: Theme.of(context).textTheme.bodyMedium),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .copyWith(color: Palette.white)),
                       // Logo
                       Image.asset('assets/images/todak_logo.png'),
                       // Email
@@ -50,6 +62,7 @@ class Login extends StatelessWidget {
                       const TextFieldLogin(
                         labelText: "Password",
                         icon: Icons.key,
+                        obscureText: true,
                       ),
                       SizedBox(height: 40),
                       TextButton(
@@ -65,7 +78,7 @@ class Login extends StatelessWidget {
                           )),
                         ),
                         onPressed: () {
-                          print('Button pressed!');
+                          Navigator.pushNamed(context, InitScreen.routeName);
                         },
                         child: Text("LOGIN",
                             style: Theme.of(context).textTheme.displayMedium),

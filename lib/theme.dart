@@ -1,5 +1,5 @@
-import 'package:eshop_ecommerce/palette.dart';
 import 'package:flutter/material.dart';
+import 'package:eshop_ecommerce/palette.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
@@ -24,19 +24,22 @@ class AppTheme {
           //   fontWeight: FontWeight.w500,
           // ),
           bodyLarge: GoogleFonts.jost(
-            fontSize: 18,
-            fontWeight: FontWeight.w400,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
             height: 1.5,
+            color: Colors.black,
           ),
           bodyMedium: GoogleFonts.jost(
             fontSize: 16,
             fontWeight: FontWeight.w400,
             height: 1.5,
+            color: Colors.black,
           ),
           bodySmall: GoogleFonts.jost(
             fontSize: 14,
             fontWeight: FontWeight.w400,
             height: 1.5,
+            color: Colors.black,
           ),
         ));
   }
