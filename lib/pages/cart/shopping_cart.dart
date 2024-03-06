@@ -53,7 +53,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.07),
+                      color: Colors.grey.withOpacity(0.2),
                       spreadRadius: 2,
                       blurRadius: 13,
                       offset: const Offset(0, 0), // changes position of shadow
@@ -84,14 +84,18 @@ class _ShoppingCartState extends State<ShoppingCart> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            FloatingActionButton(
-                              onPressed: _decrementCount,
-                              mini: true,
-                              shape: const CircleBorder(),
-                              backgroundColor: Palette.blue,
-                              child: const Icon(
-                                Icons.remove,
-                                color: Palette.white,
+                            SizedBox(
+                              width: 24,
+                              child: FloatingActionButton(
+                                onPressed: _decrementCount,
+                                mini: true,
+                                shape: const CircleBorder(),
+                                backgroundColor: Palette.blue,
+                                child: const Icon(
+                                  Icons.remove,
+                                  color: Palette.white,
+                                  size: 14,
+                                ),
                               ),
                             ),
                             const SizedBox(width: 15),
@@ -102,14 +106,18 @@ class _ShoppingCartState extends State<ShoppingCart> {
                                   textAlign: TextAlign.center,
                                 )),
                             const SizedBox(width: 15),
-                            FloatingActionButton(
-                              onPressed: _incrementCount,
-                              mini: true,
-                              shape: const CircleBorder(),
-                              backgroundColor: Palette.blue,
-                              child: const Icon(
-                                Icons.add,
-                                color: Palette.white,
+                            SizedBox(
+                              width: 24,
+                              child: FloatingActionButton(
+                                onPressed: _incrementCount,
+                                mini: true,
+                                shape: const CircleBorder(),
+                                backgroundColor: Palette.blue,
+                                child: const Icon(
+                                  Icons.add,
+                                  color: Palette.white,
+                                  size: 14,
+                                ),
                               ),
                             ),
                           ],
@@ -128,7 +136,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
                 height: 20,
               ),
               const Divider(
-                color: Palette.greyHome,
+                color: Color(0xffF0F0F0),
                 thickness: 2, // Adjust thickness as needed
               ),
               const SizedBox(
@@ -144,7 +152,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.07),
+                      color: Colors.grey.withOpacity(0.2),
                       spreadRadius: 2,
                       blurRadius: 13,
                       offset: const Offset(0, 0), // changes position of shadow
@@ -166,7 +174,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
                           ),
                           Text(
                             "Street name, City Name, 40303 Selangor Darul Ehsan",
-                            style: Theme.of(context).textTheme.bodyMedium,
+                            style: Theme.of(context).textTheme.bodySmall,
                           ),
                         ],
                       ),
@@ -196,7 +204,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.07),
+                      color: Colors.grey.withOpacity(0.2),
                       spreadRadius: 2,
                       blurRadius: 13,
                       offset: const Offset(0, 0), // changes position of shadow

@@ -1,6 +1,6 @@
 import 'package:eshop_ecommerce/pages/home/product_detail.dart';
 import 'package:eshop_ecommerce/pages/init_screen.dart';
-import 'package:eshop_ecommerce/pages/shopping_cart.dart';
+import 'package:eshop_ecommerce/pages/cart/shopping_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:eshop_ecommerce/pages/home/home.dart';
 import 'package:eshop_ecommerce/pages/login.dart';
