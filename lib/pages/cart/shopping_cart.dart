@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:eshop_ecommerce/pages/cart/address.dart';
 import 'package:eshop_ecommerce/pages/widgets/custom_button.dart';
 import 'package:eshop_ecommerce/palette.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ShoppingCart extends StatefulWidget {
   const ShoppingCart({super.key});
@@ -12,6 +15,25 @@ class ShoppingCart extends StatefulWidget {
 }
 
 class _ShoppingCartState extends State<ShoppingCart> {
+  List<Map<String, dynamic>> _cartItems = [];
+
+  Future<void> _getCartItems() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? cartItemsJson = prefs.getString('cart_items');
+    if (cartItemsJson != null) {
+      List<dynamic> cartItemsList = jsonDecode(cartItemsJson);
+      setState(() {
+        _cartItems = cartItemsList.cast<Map<String, dynamic>>();
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getCartItems();
+  }
+
   int _count = 0;
 
   void _incrementCount() {
@@ -46,95 +68,98 @@ class _ShoppingCartState extends State<ShoppingCart> {
           Container(
             padding: const EdgeInsets.all(30.0),
             child: Column(children: [
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(20),
+              for (var item in _cartItems) ...[
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(20),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.2),
+                        spreadRadius: 2,
+                        blurRadius: 13,
+                        offset:
+                            const Offset(0, 0), // changes position of shadow
+                      ),
+                    ],
                   ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.2),
-                      spreadRadius: 2,
-                      blurRadius: 13,
-                      offset: const Offset(0, 0), // changes position of shadow
-                    ),
-                  ],
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    // CachedNetworkImage(
-                    //   imageUrl:
-                    //       'https://cdn.dummyjson.com/product-images/3/thumbnail.jpg',
-                    //   fit: BoxFit.fill,
-                    //   width: 100,
-                    // ),
-                    Image.network(
-                      "https://cdn.dummyjson.com/product-images/3/thumbnail.jpg",
-                      fit: BoxFit.fill,
-                      width: 100,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Samsung Universe 9",
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            SizedBox(
-                              width: 24,
-                              child: FloatingActionButton(
-                                onPressed: _decrementCount,
-                                mini: true,
-                                shape: const CircleBorder(),
-                                backgroundColor: Palette.blue,
-                                child: const Icon(
-                                  Icons.remove,
-                                  color: Palette.white,
-                                  size: 14,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // CachedNetworkImage(
+                      //   imageUrl:
+                      //       'https://cdn.dummyjson.com/product-images/3/thumbnail.jpg',
+                      //   fit: BoxFit.fill,
+                      //   width: 100,
+                      // ),
+                      Image.network(
+                        item['image'],
+                        fit: BoxFit.fill,
+                        width: 100,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            item['title'],
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              SizedBox(
+                                width: 24,
+                                child: FloatingActionButton(
+                                  onPressed: _decrementCount,
+                                  mini: true,
+                                  shape: const CircleBorder(),
+                                  backgroundColor: Palette.blue,
+                                  child: const Icon(
+                                    Icons.remove,
+                                    color: Palette.white,
+                                    size: 14,
+                                  ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(width: 15),
-                            SizedBox(
-                                width: 18,
-                                child: Text(
-                                  "${_count}",
-                                  textAlign: TextAlign.center,
-                                )),
-                            const SizedBox(width: 15),
-                            SizedBox(
-                              width: 24,
-                              child: FloatingActionButton(
-                                onPressed: _incrementCount,
-                                mini: true,
-                                shape: const CircleBorder(),
-                                backgroundColor: Palette.blue,
-                                child: const Icon(
-                                  Icons.add,
-                                  color: Palette.white,
-                                  size: 14,
+                              const SizedBox(width: 15),
+                              SizedBox(
+                                  width: 18,
+                                  child: Text(
+                                    "${_count}",
+                                    textAlign: TextAlign.center,
+                                  )),
+                              const SizedBox(width: 15),
+                              SizedBox(
+                                width: 24,
+                                child: FloatingActionButton(
+                                  onPressed: _incrementCount,
+                                  mini: true,
+                                  shape: const CircleBorder(),
+                                  backgroundColor: Palette.blue,
+                                  child: const Icon(
+                                    Icons.add,
+                                    color: Palette.white,
+                                    size: 14,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    Text(
-                      "RM 1200",
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          color: Palette.green, fontWeight: FontWeight.bold),
-                    ),
-                  ],
+                            ],
+                          ),
+                        ],
+                      ),
+                      Text(
+                        'RM ${item['totalPrice'].toStringAsFixed(2)}',
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: Palette.green, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
+              ],
               const SizedBox(
                 height: 20,
               ),
@@ -236,7 +261,14 @@ class _ShoppingCartState extends State<ShoppingCart> {
                 ),
               ),
               SizedBox(height: 20),
-              CustomButton(labelText: "CHECK OUT", onPressed: () {})
+              CustomButton(
+                  labelText: "CHECK OUT",
+                  onPressed: () async {
+                    SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
+                    //Remove String
+                    prefs.remove("cart_items");
+                  })
             ]),
           )
           // Total Price

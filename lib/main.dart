@@ -2,9 +2,19 @@ import 'package:eshop_ecommerce/pages/login.dart';
 import 'package:eshop_ecommerce/pages/route.dart';
 import 'package:eshop_ecommerce/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'pages/cart/cart_provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => Cart()),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
