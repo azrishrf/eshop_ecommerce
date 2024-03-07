@@ -1,19 +1,20 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:eshop_ecommerce/pages/home/product.dart';
 import 'package:eshop_ecommerce/pages/widgets/custom_button.dart';
 import 'package:eshop_ecommerce/palette.dart';
 import 'package:flutter/material.dart';
 
 class ModalProduct extends StatefulWidget {
-  const ModalProduct({
-    super.key,
-  });
+  final Product product;
+
+  const ModalProduct({super.key, required this.product});
 
   @override
   State<ModalProduct> createState() => _ModalProductState();
 }
 
 class _ModalProductState extends State<ModalProduct> {
-  int _count = 0;
+  int _count = 1;
 
   void _incrementCount() {
     setState(() {
@@ -22,9 +23,11 @@ class _ModalProductState extends State<ModalProduct> {
   }
 
   void _decrementCount() {
-    setState(() {
-      _count--;
-    });
+    if (_count > 1) {
+      setState(() {
+        _count--;
+      });
+    }
   }
 
   @override
@@ -39,62 +42,63 @@ class _ModalProductState extends State<ModalProduct> {
               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CachedNetworkImage(
-                  imageUrl:
-                      'https://cdn.dummyjson.com/product-images/3/thumbnail.jpg',
-                  fit: BoxFit.fill,
+                  imageUrl: widget.product.thumbnail,
+                  fit: BoxFit.cover,
                   width: 100,
                 ),
-                SizedBox(width: 20),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Samsung",
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          "Quantity",
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
-                        const SizedBox(width: 20),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            FloatingActionButton(
-                              onPressed: _decrementCount,
-                              mini: true,
-                              shape: const CircleBorder(),
-                              backgroundColor: Palette.blue,
-                              child: const Icon(
-                                Icons.remove,
-                                color: Palette.white,
+                const SizedBox(width: 20),
+                Flexible(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.product.title,
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            "Quantity",
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                          const SizedBox(width: 20),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              FloatingActionButton(
+                                onPressed: _decrementCount,
+                                mini: true,
+                                shape: const CircleBorder(),
+                                backgroundColor: Palette.blue,
+                                child: const Icon(
+                                  Icons.remove,
+                                  color: Palette.white,
+                                ),
                               ),
-                            ),
-                            const SizedBox(width: 15),
-                            SizedBox(
-                                width: 18,
-                                child: Text(
-                                  "${_count}",
-                                  textAlign: TextAlign.center,
-                                )),
-                            const SizedBox(width: 15),
-                            FloatingActionButton(
-                              onPressed: _incrementCount,
-                              mini: true,
-                              shape: const CircleBorder(),
-                              backgroundColor: Palette.blue,
-                              child: const Icon(
-                                Icons.add,
-                                color: Palette.white,
+                              const SizedBox(width: 15),
+                              SizedBox(
+                                  width: 18,
+                                  child: Text(
+                                    "${_count}",
+                                    textAlign: TextAlign.center,
+                                  )),
+                              const SizedBox(width: 15),
+                              FloatingActionButton(
+                                onPressed: _incrementCount,
+                                mini: true,
+                                shape: const CircleBorder(),
+                                backgroundColor: Palette.blue,
+                                child: const Icon(
+                                  Icons.add,
+                                  color: Palette.white,
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 )
               ],
             ),
