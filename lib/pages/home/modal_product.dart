@@ -5,7 +5,6 @@ import 'package:eshop_ecommerce/pages/widgets/custom_button.dart';
 import 'package:eshop_ecommerce/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class ModalProduct extends StatefulWidget {
   final Product product;
@@ -36,10 +35,11 @@ class _ModalProductState extends State<ModalProduct> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 400,
+      height: 210,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -105,23 +105,15 @@ class _ModalProductState extends State<ModalProduct> {
                 )
               ],
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             CustomButton(
                 labelText: "ADD TO CART",
                 onPressed: () {
-                  Provider.of<Cart>(context, listen: false)
+                  Provider.of<CartProvider>(context, listen: false)
                       .addToCart(widget.product, _count);
-                  Provider.of<Cart>(context, listen: false).saveCartItems();
+                  Provider.of<CartProvider>(context, listen: false)
+                      .saveCartItems();
                 }),
-            CustomButton(
-                labelText: "TEST",
-                onPressed: () async {
-                  SharedPreferences prefs =
-                      await SharedPreferences.getInstance();
-                  //Return String
-                  String? stringValue = prefs.getString('cart_items');
-                  print(stringValue);
-                })
           ],
         ),
       ),

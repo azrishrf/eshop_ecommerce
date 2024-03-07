@@ -1,7 +1,11 @@
+import 'package:eshop_ecommerce/pages/cart/address.dart';
+import 'package:eshop_ecommerce/pages/cart/cart_provider.dart';
 import 'package:eshop_ecommerce/pages/widgets/custom_button.dart';
 import 'package:eshop_ecommerce/pages/widgets/text_field_address.dart';
 import 'package:eshop_ecommerce/palette.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AddAddress extends StatefulWidget {
   const AddAddress({super.key});
@@ -12,6 +16,10 @@ class AddAddress extends StatefulWidget {
 }
 
 class _AddAddressState extends State<AddAddress> {
+  TextEditingController streetController = TextEditingController();
+  TextEditingController cityController = TextEditingController();
+  TextEditingController postcodeController = TextEditingController();
+  TextEditingController stateController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,25 +39,37 @@ class _AddAddressState extends State<AddAddress> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Column(children: [
+            Column(children: [
               TextFieldAddress(
-                labelText: "Address",
+                labelText: "Street Address",
+                controller: streetController,
               ),
               TextFieldAddress(
                 labelText: "City",
+                controller: cityController,
               ),
               TextFieldAddress(
                 labelText: "Postcode",
+                controller: postcodeController,
+                keyboardType: TextInputType.number,
               ),
               TextFieldAddress(
                 labelText: "State",
+                controller: stateController,
               ),
             ]),
             CustomButton(
-                labelText: "CONFIRM",
-                onPressed: () {
-                  Navigator.pushNamed(context, AddAddress.routeName);
-                }),
+              labelText: "CONFIRM",
+              onPressed: () async {
+                Provider.of<CartProvider>(context, listen: false).addAddress(
+                  streetController.text,
+                  cityController.text,
+                  postcodeController.text,
+                  stateController.text,
+                );
+                Navigator.pop(context);
+              },
+            ),
           ],
         ),
       ),

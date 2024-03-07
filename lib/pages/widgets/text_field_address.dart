@@ -3,10 +3,15 @@ import 'package:flutter/material.dart';
 
 class TextFieldAddress extends StatelessWidget {
   final String labelText;
+  final TextEditingController controller;
+  final TextInputType keyboardType;
 
   const TextFieldAddress({
     super.key,
     required this.labelText,
+    required this.controller,
+    this.keyboardType = TextInputType.text,
+
   });
 
   @override
@@ -20,6 +25,8 @@ class TextFieldAddress extends StatelessWidget {
         const SizedBox(height: 5),
         TextField(
           style: Theme.of(context).textTheme.bodyMedium,
+          controller: controller,
+          keyboardType: keyboardType,
           decoration: const InputDecoration(
             filled: true,
             fillColor: Palette.white,
