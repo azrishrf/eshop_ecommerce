@@ -303,12 +303,24 @@ class _ShoppingCartState extends State<ShoppingCart> {
                                 Provider.of<CartProvider>(context,
                                         listen: false)
                                     .totalPrice);
-
-                        // final prefs = await SharedPreferences.getInstance();
-                        // prefs.remove("order_history");
-
-                        // String? orderHistory = prefs.getString('order_history');
-                        // print(orderHistory);
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text("Order Success"),
+                              content: Text(
+                                  "Your order has been placed successfully."),
+                              actions: [
+                                TextButton(
+                                  child: Text("OK"),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        );
                       })
                 ]),
               ),
