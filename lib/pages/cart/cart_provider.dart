@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:logger/logger.dart';
 import 'package:eshop_ecommerce/pages/cart/cart_item.dart';
 import 'package:eshop_ecommerce/pages/home/product.dart';
 import 'package:flutter/material.dart';
@@ -165,8 +164,6 @@ class CartProvider with ChangeNotifier {
     for (var element in _addresses) {
       element.isSelected = false;
     }
-
-    print(_addresses);
 
     int index = _addresses
         .indexWhere((element) => element.addressId == address['addressId']);

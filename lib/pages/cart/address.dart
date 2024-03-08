@@ -21,7 +21,6 @@ class _AddressState extends State<Address> {
         .map((item) => item.toJson())
         .toList();
 
-    // print(addresses);
     return Scaffold(
       appBar: AppBar(
         title: Text("Address Selection",

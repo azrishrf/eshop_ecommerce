@@ -34,15 +34,12 @@ class OrderProvider with ChangeNotifier {
     String orderHistory = jsonEncode(_orderHistory);
     await prefs.setString('order_history', orderHistory);
 
-    print(orderHistory);
-
     notifyListeners();
   }
 
   Future<List<Order>> loadOrder() async {
     final prefs = await SharedPreferences.getInstance();
     String? jsonOrderString = prefs.getString('order_history');
-    print(jsonOrderString);
 
     if (jsonOrderString != null) {
       List<dynamic> jsonOrder = jsonDecode(jsonOrderString) as List<dynamic>;
