@@ -16,7 +16,7 @@ class _OrderDetailsState extends State<OrderDetails> {
   @override
   Widget build(BuildContext context) {
     String fullAddress =
-        "${widget.orderHistory['address']['address']}, ${widget.orderHistory['address']['city']}, ${widget.orderHistory['address']['zipCode']}, ${widget.orderHistory['address']['state']}";
+        "${widget.orderHistory['address']['street']}, ${widget.orderHistory['address']['city']}, ${widget.orderHistory['address']['postcode']}, ${widget.orderHistory['address']['state']}";
 
     return Scaffold(
       appBar: AppBar(
