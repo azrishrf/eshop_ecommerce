@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:eshop_ecommerce/pages/cart/address.dart';
 import 'package:eshop_ecommerce/pages/cart/cart_item.dart';
 import 'package:eshop_ecommerce/pages/cart/cart_provider.dart';
+import 'package:eshop_ecommerce/pages/orders/order_provider.dart';
 import 'package:eshop_ecommerce/pages/widgets/custom_button.dart';
 import 'package:eshop_ecommerce/palette.dart';
 import 'package:flutter/material.dart';
@@ -179,7 +180,6 @@ class _ShoppingCartState extends State<ShoppingCart> {
                             children: [
                               GestureDetector(
                                 onTap: () {
-                                  // Add code here to delete the product from the cart
                                   Provider.of<CartProvider>(context,
                                           listen: false)
                                       .removeFromCart(item['productId']);
@@ -296,10 +296,19 @@ class _ShoppingCartState extends State<ShoppingCart> {
                   CustomButton(
                       labelText: "CHECK OUT",
                       onPressed: () async {
-                        SharedPreferences prefs =
-                            await SharedPreferences.getInstance();
-                        //Remove String
-                        prefs.remove("address");
+                        Provider.of<OrderProvider>(context, listen: false)
+                            .addOrder(
+                                cartItems,
+                                selectedAddress,
+                                Provider.of<CartProvider>(context,
+                                        listen: false)
+                                    .totalPrice);
+
+                        // final prefs = await SharedPreferences.getInstance();
+                        // prefs.remove("order_history");
+
+                        // String? orderHistory = prefs.getString('order_history');
+                        // print(orderHistory);
                       })
                 ]),
               ),

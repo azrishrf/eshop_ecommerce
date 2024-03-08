@@ -15,17 +15,13 @@ final Map<String, WidgetBuilder> routes = {
   InitScreen.routeName: (context) => const InitScreen(),
   Login.routeName: (context) => const Login(),
   Home.routeName: (context) => const Home(),
-  // ProductDetail.routeName: (context) =>  ProductDetail(ModalRoute.of(context).settings.arguments),
   Orders.routeName: (context) => const Orders(),
-  OrderDetails.routeName: (context) => const OrderDetails(),
   Profile.routeName: (context) => const Profile(),
   ShoppingCart.routeName: (context) => const ShoppingCart(),
   Address.routeName: (context) => const Address(),
   AddAddress.routeName: (context) => const AddAddress(),
   ProductDetail.routeName: (context) {
     final args = ModalRoute.of(context)!.settings.arguments;
-    return ProductDetail(
-        product:
-            args as Product); // Assuming ProductDetail expects a Product object
+    return ProductDetail(product: args as Product);
   },
 };

@@ -27,6 +27,10 @@ class TextFieldLogin extends StatelessWidget {
         const SizedBox(height: 5),
         TextField(
           obscureText: obscureText,
+          style: Theme.of(context)
+              .textTheme
+              .bodyMedium!
+              .copyWith(color: Palette.white),
           decoration: InputDecoration(
             filled: true,
             fillColor: Palette.blue,

@@ -113,6 +113,7 @@ class _ModalProductState extends State<ModalProduct> {
                       .addToCart(widget.product, _count);
                   Provider.of<CartProvider>(context, listen: false)
                       .saveCartItems();
+                  Navigator.pop(context);
                 }),
           ],
         ),

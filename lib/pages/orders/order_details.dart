@@ -1,11 +1,11 @@
-import 'package:eshop_ecommerce/pages/cart/add_address.dart';
 import 'package:eshop_ecommerce/pages/cart/shopping_cart.dart';
-import 'package:eshop_ecommerce/pages/widgets/custom_button.dart';
 import 'package:eshop_ecommerce/palette.dart';
 import 'package:flutter/material.dart';
 
 class OrderDetails extends StatefulWidget {
-  const OrderDetails({super.key});
+  final Map<String, dynamic> orderHistory;
+
+  const OrderDetails({super.key, required this.orderHistory});
   static String routeName = "/orderdetails";
 
   @override
@@ -15,6 +15,9 @@ class OrderDetails extends StatefulWidget {
 class _OrderDetailsState extends State<OrderDetails> {
   @override
   Widget build(BuildContext context) {
+    String fullAddress =
+        "${widget.orderHistory['address']['address']}, ${widget.orderHistory['address']['city']}, ${widget.orderHistory['address']['zipCode']}, ${widget.orderHistory['address']['state']}";
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Order Details",
@@ -68,6 +71,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                 ],
               ),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -80,7 +84,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                             .copyWith(fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        "13 Jan 2022",
+                        widget.orderHistory['date'],
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                     ],
@@ -97,7 +101,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                             .copyWith(fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        "05:05 PM",
+                        widget.orderHistory['time'],
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                     ],
@@ -121,7 +125,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                       ),
                       const SizedBox(height: 10),
                       Text(
-                        "No.8 Jln SP 3/2 Seri  Pristana, 47000 Sungai Buloh, Selangor",
+                        fullAddress,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                     ],
@@ -133,114 +137,44 @@ class _OrderDetailsState extends State<OrderDetails> {
                       thickness: 2, // Adjust thickness as needed
                     ),
                   ),
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Image.network(
-                          "https://cdn.dummyjson.com/product-images/3/thumbnail.jpg",
-                          fit: BoxFit.fill,
-                          width: 70,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Samsung Universe 9",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium!
-                                  .copyWith(fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              "Quantity: 1",
-                              style: Theme.of(context).textTheme.bodyMedium,
-                            ),
-                          ],
-                        ),
-                        Text(
-                          "RM 1200",
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(fontWeight: FontWeight.bold),
-                        ),
-                      ],
+                  for (var item in widget.orderHistory['orderItem']) ...{
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Image.network(
+                            item['image'],
+                            fit: BoxFit.fill,
+                            width: 70,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                item['title'],
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                item['quantity'].toString(),
+                                style: Theme.of(context).textTheme.bodyMedium,
+                              ),
+                            ],
+                          ),
+                          Text(
+                            "RM ${item['totalPrice'].toStringAsFixed(2)}",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Image.network(
-                          "https://cdn.dummyjson.com/product-images/3/thumbnail.jpg",
-                          fit: BoxFit.fill,
-                          width: 70,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Samsung Universe 9",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium!
-                                  .copyWith(fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              "Quantity: 1",
-                              style: Theme.of(context).textTheme.bodyMedium,
-                            ),
-                          ],
-                        ),
-                        Text(
-                          "RM 1200",
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Image.network(
-                          "https://cdn.dummyjson.com/product-images/3/thumbnail.jpg",
-                          fit: BoxFit.fill,
-                          width: 70,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Samsung Universe 9",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium!
-                                  .copyWith(fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              "Quantity: 1",
-                              style: Theme.of(context).textTheme.bodyMedium,
-                            ),
-                          ],
-                        ),
-                        Text(
-                          "RM 1200",
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                  ),
+                  },
                 ],
               ),
             ),
@@ -276,7 +210,8 @@ class _OrderDetailsState extends State<OrderDetails> {
                           .textTheme
                           .bodyMedium!
                           .copyWith(fontWeight: FontWeight.bold)),
-                  Text("RM 1200",
+                  Text(
+                      "RM ${widget.orderHistory['totalPrice'].toStringAsFixed(2)}",
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           color: Palette.green, fontWeight: FontWeight.bold))
                 ],
