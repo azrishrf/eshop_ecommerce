@@ -82,7 +82,7 @@ class _ModalProductState extends State<ModalProduct> {
                               SizedBox(
                                   width: 18,
                                   child: Text(
-                                    "${_count}",
+                                    "$_count",
                                     textAlign: TextAlign.center,
                                   )),
                               const SizedBox(width: 15),

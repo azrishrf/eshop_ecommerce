@@ -121,14 +121,14 @@ class _OrdersState extends State<Orders> {
                 ),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
           ],
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           const Divider(
             color: Color(0xffF0F0F0),
             thickness: 2, // Adjust thickness as needed
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
         ]),
       )),
     );

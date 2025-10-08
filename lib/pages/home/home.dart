@@ -94,12 +94,12 @@ class _HomeState extends State<Home> {
                                 color: Palette.greyLight,
                                 width: double.infinity,
                                 child: Padding(
-                                  padding: EdgeInsets.all(16),
+                                  padding: const EdgeInsets.all(16),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Container(
+                                      SizedBox(
                                         height: 40,
                                         child: Text(
                                           products[index].title,

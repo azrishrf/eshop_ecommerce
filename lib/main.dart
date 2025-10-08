@@ -14,7 +14,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => CartProvider()),
         ChangeNotifierProvider(create: (_) => OrderProvider()),
       ],
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }

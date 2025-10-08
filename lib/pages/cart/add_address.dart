@@ -1,11 +1,9 @@
-import 'package:eshop_ecommerce/pages/cart/address.dart';
 import 'package:eshop_ecommerce/pages/cart/cart_provider.dart';
 import 'package:eshop_ecommerce/pages/widgets/custom_button.dart';
 import 'package:eshop_ecommerce/pages/widgets/text_field_address.dart';
 import 'package:eshop_ecommerce/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class AddAddress extends StatefulWidget {
   const AddAddress({super.key});

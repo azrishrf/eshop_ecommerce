@@ -1,9 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:eshop_ecommerce/pages/cart/address.dart';
 import 'package:eshop_ecommerce/pages/login.dart';
-import 'package:eshop_ecommerce/pages/orders/order_details.dart';
 import 'package:eshop_ecommerce/pages/widgets/custom_button.dart';
-import 'package:eshop_ecommerce/palette.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatefulWidget {

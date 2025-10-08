@@ -1,9 +1,7 @@
-import 'package:eshop_ecommerce/pages/home/home.dart';
 import 'package:eshop_ecommerce/pages/init_screen.dart';
 import 'package:eshop_ecommerce/pages/widgets/text_field_login.dart';
 import 'package:eshop_ecommerce/palette.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});

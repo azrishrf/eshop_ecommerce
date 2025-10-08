@@ -1,8 +1,7 @@
+import 'package:eshop_ecommerce/pages/cart/shopping_cart.dart';
 import 'package:eshop_ecommerce/pages/home/home.dart';
-import 'package:eshop_ecommerce/pages/login.dart';
 import 'package:eshop_ecommerce/pages/orders/orders.dart';
 import 'package:eshop_ecommerce/pages/profile.dart';
-import 'package:eshop_ecommerce/pages/cart/shopping_cart.dart';
 import 'package:eshop_ecommerce/palette.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +25,7 @@ class _InitScreenState extends State<InitScreen> {
     });
   }
 
-  final pages = [Home(), const Orders(), const Profile()];
+  final pages = [const Home(), const Orders(), const Profile()];
 
   @override
   Widget build(BuildContext context) {

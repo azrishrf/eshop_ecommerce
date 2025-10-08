@@ -31,8 +31,12 @@ class CustomButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           if (showIcon) ...[
-            Icon(icon, color: Palette.white, size: 20,),
-            SizedBox(width: 8.0), // Add spacing between icon and text
+            Icon(
+              icon,
+              color: Palette.white,
+              size: 20,
+            ),
+            const SizedBox(width: 8.0), // Add spacing between icon and text
           ],
           Text(labelText,
               style: Theme.of(context)
